@@ -8,7 +8,8 @@ rs = pb.Plant()
 
 # Open plant and root parameter from a file
 path = "../../modelparameter/structural/rootsystem/"
-name = "Anagallis_femina_Leitner_2010"
+#name = "Anagallis_femina_Leitner_2010"
+name = "test"
 rs.readParameters(path + name + ".xml")
 
 # stem = pb.StemRandomParameter(rs)
@@ -25,7 +26,7 @@ for p in rs.getOrganRandomParameter(pb.root):
 rs.writeParameters("test.xml")
 
 # Simulate
-rs.simulate(30, True)
+rs.simulate(15, True)
 
 # for o in rs.getOrgans():
 #     print(o.param())
