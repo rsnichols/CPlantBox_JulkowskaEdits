@@ -40,7 +40,7 @@
         <!--Y-Coordinate of seed position [cm]-->
         <parameter name="seedPos.z" value="-3"/>
         <!--Z-Coordinate of seed position [cm]-->
-        <parameter name="simulationTime" value="5"/>
+        <parameter name="simulationTime" value="2"/>
         <!--Recommended final simulation time  [day]-->
     </seed>
     <root name="primaryroot" subType="1">
