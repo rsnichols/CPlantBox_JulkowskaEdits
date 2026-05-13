@@ -26,7 +26,7 @@ for p in rs.getOrganRandomParameter(pb.root):
 rs.writeParameters("test.xml")
 
 # Simulate
-rs.simulate(15, True)
+rs.simulate(3, True)
 
 # for o in rs.getOrgans():
 #     print(o.param())
