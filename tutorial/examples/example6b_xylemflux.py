@@ -18,7 +18,8 @@ simtime = 14  # [day]
 """ root system """
 rs = pb.MappedPlant()
 path = "../../modelparameter/structural/rootsystem/"
-name = "Anagallis_femina_Leitner_2010"  # Zea_mays_1_Leitner_2010
+#name = "Anagallis_femina_Leitner_2010"  # Zea_mays_1_Leitner_2010
+name = "test"
 rs.readParameters(path + name + ".xml")
 rs.initialize()
 rs.simulate(simtime, False)
