@@ -11,8 +11,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """ Parameters """
-kz = 4.32e-2  # axial conductivity [cm3/day]
-kr = 1.728e-4  # radial conductivity [1/day]
+#kz = 4.32e-2  # axial conductivity [cm3/day]
+#kr = 1.728e-4  # radial conductivity [1/day]
+#do conductivity by segment (same conductivities for each topology):
+#radial
+#MP: kr = 8.83e-05
+#MM: kr = 8.76e-05
+#MT: kr = 9.69e-05
+#LP: kr = 8.67e-05
+#LM: kr = 8.51e-05
+#LT: kr = 8.65e-05
+#axial:
+#MP: kx = 2.2e-06
+#MM: kx = 3.44e-07
+#MT: kx = 3.85e-07
+#LP: kx = 4.18e-07
+#LM: kx = 4.16e-07
+#LT: kx = 4.20e-07
+
+
 p_s = -200  # constant soil potential [cm]
 p0 = -500  # dirichlet bc at top [cm]
 simtime = 14  # [day]
