@@ -44,6 +44,7 @@ rs.initialize()
 rs.simulate(simtime, False)
 
 """ root problem """
+params = PlantHydraulicParameters()
 params.setKxValues(kx_mm,kx_mp,kx_mt,kx_lm,kx_lm,kx_lt)
 params.setKrValues(kr_mm,kr_mp,kr_mt,kr_lm,kr_lm,kr_lt)
 r = HydraulicModel_Meunier(rs, params, cached=False)
