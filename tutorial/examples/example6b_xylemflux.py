@@ -27,17 +27,18 @@ rs.initialize()
 rs.simulate(simtime, False)
 
 """ root problem """
-r = XylemFluxPython(rs)  # hydraulic model
-r.setKx([kz, kz, kz, kz, kz, kz])  # axial conductivities per root order
-r.setKr([kr * 0, kr, kr , kr, kr, kr])  # radial conductivities per root order
-soil_index = lambda x, y, z: 0  # maps ever coordinate to soil cell with index 0
-r.rs.setSoilGrid(soil_index)
+params = PlantHydraulicParameters()
+params.set_kx_const(kz)
+params.set_kr_const(kr)
+r = HydraulicModel_Meunier(rs, params, cached=False)
+soil_index = lambda x, y, z: 0
+r.ms.setSoilGrid(soil_index)
 
 """ Numerical solution """
-soil = [p_s]  # soil with a single soil cell
-rx = r.solve_dirichlet(simtime, p0, p_s, soil, True)
-fluxes = r.segFluxes(simtime, rx, -200 * np.ones(rx.shape), False)  # cm3/day
-print("Transpiration", r.collar_flux(simtime, rx, [p_s]), "cm3/day")
+soil = [p_s]
+rx = r.solve_dirichlet(simtime, p0, soil, cells=True)
+fluxes = r.radial_fluxes(simtime, rx, soil, cells=True)
+print("Transpiration", r.get_transpiration(simtime, rx, soil, cells=True), "cm3/day")
 
 """ Macroscopic root system parameter """
 suf = r.get_suf(simtime)
