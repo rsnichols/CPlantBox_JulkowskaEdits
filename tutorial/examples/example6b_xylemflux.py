@@ -15,19 +15,19 @@ import matplotlib.pyplot as plt
 #kr = 1.728e-4  # radial conductivity [1/day]
 #do conductivity by segment (same conductivities for each topology):
 #radial
-#MP: kr = 8.83e-05
-#MM: kr = 8.76e-05
-#MT: kr = 9.69e-05
-#LP: kr = 8.67e-05
-#LM: kr = 8.51e-05
-#LT: kr = 8.65e-05
+kr_mp = 8.83e-05
+kr_mm = 8.76e-05
+kr_mt = 9.69e-05
+kr_lp = 8.67e-05
+kr_lm = 8.51e-05
+kr_lt = 8.65e-05
 #axial:
-#MP: kx = 2.2e-06
-#MM: kx = 3.44e-07
-#MT: kx = 3.85e-07
-#LP: kx = 4.18e-07
-#LM: kx = 4.16e-07
-#LT: kx = 4.20e-07
+kx_mp = 2.2e-06
+kx_mm = 3.44e-07
+kx_mt = 3.85e-07
+kx_lp = 4.18e-07
+kx_lm = 4.16e-07
+kx_lt = 4.20e-07
 
 
 p_s = -200  # constant soil potential [cm]
@@ -44,9 +44,8 @@ rs.initialize()
 rs.simulate(simtime, False)
 
 """ root problem """
-params = PlantHydraulicParameters()
-params.set_kx_const(kz)
-params.set_kr_const(kr)
+params.setKxValues(kx_mm,kx_mp,kx_mt,kx_lm,kx_lm,kx_lt)
+params.setKrValues(kr_mm,kr_mp,kr_mt,kr_lm,kr_lm,kr_lt)
 r = HydraulicModel_Meunier(rs, params, cached=False)
 soil_index = lambda x, y, z: 0
 r.ms.setSoilGrid(soil_index)
