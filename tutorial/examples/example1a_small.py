@@ -26,7 +26,7 @@ for p in rs.getOrganRandomParameter(pb.root):
 #rs.writeParameters("christmas_tree.xml")
 #rs.initialize()
 # Simulate
-rs.simulate(3, True)
+rs.simulate(30, True)
 
 # for o in rs.getOrgans():
 #     print(o.param())
