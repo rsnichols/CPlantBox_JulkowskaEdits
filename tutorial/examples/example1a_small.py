@@ -23,7 +23,8 @@ for p in rs.getOrganRandomParameter(pb.root):
     print(p.subType)
     print(p.name)
 
-rs.writeParameters("test.xml")
+rs.writeParameters("broomstick.xml")
+#rs.writeParameters("christmas_tree.xml")
 
 # Simulate
 rs.simulate(3, True)
