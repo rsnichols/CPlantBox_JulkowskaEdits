@@ -9,7 +9,7 @@ rs = pb.Plant()
 # Open plant and root parameter from a file
 path = "../../modelparameter/structural/rootsystem/"
 #name = "Anagallis_femina_Leitner_2010"
-name = "test_2"
+name = "broomstick"
 rs.readParameters(path + name + ".xml")
 
 # stem = pb.StemRandomParameter(rs)
