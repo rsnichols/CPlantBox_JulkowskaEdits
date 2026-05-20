@@ -20,12 +20,11 @@ rs.readParameters(path + name + ".xml")
 rs.initialize()
 
 for p in rs.getOrganRandomParameter(pb.root):
-    print(p.subType)
-    print(p.name)
+    print("root subType", p.subType, p.name)
 
-rs.writeParameters("broomstick.xml")
+#rs.writeParameters("broomstick.xml") -- this will rewrite your root!
 #rs.writeParameters("christmas_tree.xml")
-
+#rs.initialize()
 # Simulate
 rs.simulate(3, True)
 
