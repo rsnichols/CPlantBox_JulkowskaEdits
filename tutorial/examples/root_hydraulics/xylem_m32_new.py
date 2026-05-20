@@ -30,7 +30,8 @@ param = PlantHydraulicParameters()
 param.setKr([kr])
 param.setKx([kz])
 
-r = HydraulicModel_Meunier("RootSystem.rsml", param, cached = False)  # or HydraulicModel_Doussan, HydraulicModel_Meunier
+#r = HydraulicModel_Meunier("RootSystem.rsml", param, cached = False)  # or HydraulicModel_Doussan, HydraulicModel_Meunier
+r = HydraulicModel_Meunier("20230113RSA_M248M058LA1511_F1_100mM_Salt076 (1).rsml01", param, cached = False)
 r.test()
 
 nodes = r.get_nodes()
