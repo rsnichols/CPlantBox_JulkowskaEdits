@@ -44,8 +44,8 @@
         <!--Recommended final simulation time  [day]-->
     </seed>
     <root name="taproot" subType="1">
-        <parameter name="gf" value="3"/>
-        <!--Growth function number [1]-->
+        <parameter name="gf" value="1"/>
+        <!--Growth function 1 = exponential (gf=3 needs carbon coupling; use 1 for structure-only)-->
         <parameter name="tropismT" value="1"/>
         <!--Type of root tropism (plagio = 0, gravi = 1, exo = 2, hydro, chemo = 3)-->
         <parameter name="a" value="0.050000001"/>
@@ -60,16 +60,16 @@
         <!--Root hair length [cm]-->
         <parameter name="hairsZone" value="0"/>
         <!--Length of the root hair zone [cm]-->
-        <parameter name="la" value="58"/>
-        <!--Apical zone [cm]: single basal branching point only-->
+        <parameter name="la" value="25"/>
+        <!--Apical zone [cm]: branching allowed in lower/middle part (zone length = lmax-la-lb)-->
         <parameter name="lb" value="0.3"/>
-        <!--Basal zone [cm] (laterals emerge just below seed)-->
+        <!--Basal zone [cm] (no laterals on first 0.3 cm)-->
         <parameter name="ldelay" value="-1"/>
         <!--Lateral root emergence delay [day]-->
         <parameter name="lmax" value="60"/>
         <!--Maximal root length [cm]-->
-        <parameter name="ln" value="1"/>
-        <!--Spacing for linking nodes; must be finite so node 1 exists (do not use 1e+09)-->
+        <parameter name="ln" value="12"/>
+        <!--Inter-lateral distance [cm]; node 2 is at ~lb+2*ln ≈ 24 cm (middle of taproot)-->
         <parameter name="lnk" value="0"/>
         <!--Slope of inter-lateral distances [1]-->
         <parameter name="r" value="2.4000001"/>
@@ -82,8 +82,8 @@
         <!--Number of trials of root tropism-->
         <parameter name="tropismS" value="0.05"/>
         <!--Mean value of expected change of root tropism [1/cm]-->
-        <parameter name="successor" ruleId="0" numLat="4" where="1" subType="2" organType="2" percentage="1"/>
-        <!--4 laterals at one linking node at taproot base (near seed)-->
+        <parameter name="successor" ruleId="0" numLat="4" where="2" subType="2" organType="2" percentage="1"/>
+        <!--4 laterals at linking node 2 (~24 cm along taproot, visible in 2D plot)-->
     </root>
     <root name="lateral1" subType="2">
         <parameter name="gf" value="1"/>
@@ -108,20 +108,20 @@
         <!--Basal zone [cm]-->
         <parameter name="ldelay" value="-1"/>
         <!--Lateral root emergence delay [day]-->
-        <parameter name="lmax" value="60"/>
-        <!--Maximal root length [cm] (same as taproot)-->
+        <parameter name="lmax" value="25"/>
+        <!--Maximal root length [cm] (shorter than taproot; easier to see at sim_time=14)-->
         <parameter name="lmaxs" value="0"/>
         <!--Standard deviation of maximal root length [cm]-->
-        <parameter name="ln" value="1e+09"/>
-        <!--No second-order laterals-->
+        <parameter name="ln" value="1"/>
+        <!--No second-order laterals (do not use 1e+09: breaks ln vector)-->
         <parameter name="lnk" value="0"/>
         <!--Slope of inter-lateral distances [1]-->
         <parameter name="r" value="2.4000001"/>
-        <!--Initial growth rate [cm day-1] (same as taproot)-->
+        <!--Initial growth rate [cm day-1]-->
         <parameter name="rlt" value="1e+09"/>
         <!--Root life time [day]-->
-        <parameter name="theta" value="0.78539816"/>
-        <!--45 deg from parent [rad]-->
+        <parameter name="theta" value="1.57079633"/>
+        <!--90 deg from parent [rad]: clear branches in x-z side view-->
         <parameter name="tropismN" value="0"/>
         <!--Number of trials of root tropism-->
         <parameter name="tropismS" value="0"/>
