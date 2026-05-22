@@ -1,6 +1,9 @@
 """2D representation of a plant using Matplotlib"""
 
+import os
+
 import matplotlib.pyplot as plt  # |\label{l2_1g:importStart}|
+import pandas as pd
 
 import plantbox as pb
 from plantbox.structural.MappedOrganism import MappedPlantPython  # |\label{l2_1g:importEnd}|
@@ -9,8 +12,7 @@ from plantbox.visualisation import figure_style
 sim_time = 14  # [day]  # |\label{l2_1g:defineStart}|
 plant = MappedPlantPython()  # |\label{l2_1g:MappedPlantPython}|
 path = "../../modelparameter/structural/plant/"
-#filename = "fspm2023"
-filename = "try1"
+filename = "fspm2023"
 plant.readParameters(path + filename + ".xml")
 
 soil_domain = pb.SDF_PlantContainer(500, 500, 500, True)  # to avoid root growing aboveground
@@ -19,6 +21,17 @@ plant.setGeometry(soil_domain)  # creates soil space to stop roots from growing 
 verbose = False
 plant.initialize(verbose)
 plant.simulate(sim_time, verbose)  # |\label{l2_1g:defineEnd}|
+
+# Export root x-y coordinates (cm) to Excel
+root_rows = []
+for organ_id, poly in enumerate(plant.getPolylines(pb.root)):
+    nodes = plant.toNumpy(poly)
+    for node_index, (x, y, _z) in enumerate(nodes):
+        root_rows.append(
+            {"organ_id": organ_id, "node_index": node_index, "x": x, "y": y}
+        )
+os.makedirs("results", exist_ok=True)
+pd.DataFrame(root_rows).to_excel("results/example_2_4_root_xy.xlsx", index=False)
 
 fig, ax = figure_style.subplots11()  # |\label{l2_1g:plotStart}|
 organ_name = ["root", "stem", "leaf", "root tips"]
