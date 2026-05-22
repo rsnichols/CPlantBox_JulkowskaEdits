@@ -9,7 +9,8 @@ from plantbox.visualisation import figure_style
 sim_time = 14  # [day]  # |\label{l2_1g:defineStart}|
 plant = MappedPlantPython()  # |\label{l2_1g:MappedPlantPython}|
 path = "../../modelparameter/structural/plant/"
-filename = "fspm2023"
+#filename = "fspm2023"
+filename = "try1"
 plant.readParameters(path + filename + ".xml")
 
 soil_domain = pb.SDF_PlantContainer(500, 500, 500, True)  # to avoid root growing aboveground
