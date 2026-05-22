@@ -88,7 +88,7 @@
     <root name="lateral1" subType="2">
         <parameter name="gf" value="3"/>
         <!--Growth function number [1]-->
-        <parameter name="tropismT" value="1"/>
+        <parameter name="tropismT" value="0"/>
         <!--Type of root tropism (plagio = 0, gravi = 1, exo = 2, hydro, chemo = 3)-->
         <parameter name="a" value="0.02"/>
         <!--radius [cm]-->
@@ -118,11 +118,11 @@
         <!--Initial growth rate [cm day-1]-->
         <parameter name="rlt" value="1e+09"/>
         <!--Root life time [day]-->
-        <parameter name="theta" value="0.79000002"/>
+        <parameter name="theta" value="1.57079633"/>
         <!--Angle between root and parent root [rad]-->
         <parameter name="tropismN" value="1"/>
         <!--Number of trials of root tropism-->
-        <parameter name="tropismS" value="0.5"/>
+        <parameter name="tropismS" value="0"/>
         <!--Mean value of expected change of root tropism [1/cm]-->
         <parameter name="successor" ruleId="0" numLat="1" Where="" subType="3" organType="2" percentage="1"/>
         <!--Sub type of lateral -->
@@ -130,7 +130,7 @@
     <root name="lateral2" subType="3">
         <parameter name="gf" value="3"/>
         <!--Growth function number [1]-->
-        <parameter name="tropismT" value="1"/>
+        <parameter name="tropismT" value="0"/>
         <!--Type of root tropism (plagio = 0, gravi = 1, exo = 2, hydro, chemo = 3)-->
         <parameter name="a" value="0.02"/>
         <!--radius [cm]-->
@@ -150,7 +150,7 @@
         <!--Basal zone [cm]-->
         <parameter name="ldelay" value="-1"/>
         <!--Lateral root emergence delay [day]-->
-        <parameter name="lmax" value="4"/>
+        <parameter name="lmax" value="10"/>
         <!--Maximal root length [cm]-->
         <parameter name="ln" value="1"/>
         <!--Inter-lateral distance [cm]-->
@@ -160,11 +160,11 @@
         <!--Initial growth rate [cm day-1]-->
         <parameter name="rlt" value="1e+09"/>
         <!--Root life time [day]-->
-        <parameter name="theta" value="0.95993102"/>
+        <parameter name="theta" value="1.57079633"/>
         <!--Angle between root and parent root [rad]-->
         <parameter name="tropismN" value="1"/>
         <!--Number of trials of root tropism-->
-        <parameter name="tropismS" value="0.40000001"/>
+        <parameter name="tropismS" value="0"/>
         <!--Mean value of expected change of root tropism [1/cm]-->
     </root>
 </plant>
