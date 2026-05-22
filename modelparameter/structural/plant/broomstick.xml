@@ -68,8 +68,8 @@
         <!--Lateral root emergence delay [day]-->
         <parameter name="lmax" value="60"/>
         <!--Maximal root length [cm]-->
-        <parameter name="ln" value="1e+09"/>
-        <!--No additional lateral attachment points along taproot-->
+        <parameter name="ln" value="1"/>
+        <!--Spacing for linking nodes; must be finite so node 1 exists (do not use 1e+09)-->
         <parameter name="lnk" value="0"/>
         <!--Slope of inter-lateral distances [1]-->
         <parameter name="r" value="2.4000001"/>
@@ -86,8 +86,8 @@
         <!--4 laterals at one linking node at taproot base (near seed)-->
     </root>
     <root name="lateral1" subType="2">
-        <parameter name="gf" value="3"/>
-        <!--Growth function number [1] (same as taproot)-->
+        <parameter name="gf" value="1"/>
+        <!--Growth function [1]: gf=1 so laterals are visible at sim_time=14 days-->
         <parameter name="tropismT" value="0"/>
         <!--Plagiotropic: keep initial heading (45 deg from parent)-->
         <parameter name="a" value="0.02"/>
