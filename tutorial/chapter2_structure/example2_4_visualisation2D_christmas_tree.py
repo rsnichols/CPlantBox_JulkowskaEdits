@@ -35,7 +35,7 @@ for organ_id, poly in enumerate(plant.getPolylines(pb.root)):
 #print(root_rows)
 os.makedirs("results", exist_ok=True)
 pd.DataFrame(root_rows).to_excel("results/example_2_4_root_xy.xlsx", index=False)
-wb = openpyxl.load_workbook("example_2_4_root_xy.xlsx")
+wb = openpyxl.load_workbook("results/example_2_4_root_xy.xlsx")
 sheet = wb.active
 for row in sheet.iter_rows(values_only=True):
     print(row)
