@@ -1,6 +1,7 @@
 <plant>
     <seed name="true" subType="0">
-        <parameter name="delayDefinition" value="0"/>
+        <parameter name="delayDefinition" value="2"/>
+        <!--2 = lateral uses its own ldelay (0); avoids long distance-based wait from taproot ln-->
         <parameter name="delayDefinitionShoot" value="0"/>
         <parameter name="maxTil" value="0"/>
         <parameter name="a" value="0.1"/>
@@ -43,7 +44,7 @@
         <parameter name="ln" value="5.5"/>
         <!--Laterals at ~lb+ln ≈ 5.7 cm (tap tip); reached in ~1–2 days with r below-->
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="5"/>
+        <parameter name="r" value="8"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0"/>
         <parameter name="tropismN" value="0.5"/>
@@ -65,11 +66,12 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="0"/>
-        <parameter name="lmax" value="8"/>
+        <parameter name="lmax" value="10"/>
         <parameter name="lmaxs" value="0"/>
         <parameter name="ln" value="1"/>
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="4"/>
+        <parameter name="r" value="25"/>
+        <!--cm day-1: reaches lmax in under 1 day after emergence (linear gf)-->
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0.78539816"/>
         <!--45 deg from parent taproot [rad]-->
@@ -88,11 +90,11 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="0"/>
-        <parameter name="lmax" value="8"/>
+        <parameter name="lmax" value="10"/>
         <parameter name="lmaxs" value="0"/>
         <parameter name="ln" value="1"/>
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="4"/>
+        <parameter name="r" value="25"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0.78539816"/>
         <parameter name="tropismN" value="0"/>
