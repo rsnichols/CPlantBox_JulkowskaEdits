@@ -31,8 +31,10 @@ for organ_id, poly in enumerate(plant.getPolylines(pb.root)):
         root_rows.append(
             {"organ_id": organ_id, "node_index": node_index, "x": x, "y": y}
         )
+print(root_rows)
 os.makedirs("results", exist_ok=True)
 pd.DataFrame(root_rows).to_excel("results/example_2_4_root_xy.xlsx", index=False)
+
 
 fig, ax = figure_style.subplots11()  # |\label{l2_1g:plotStart}|
 organ_name = ["root", "stem", "leaf", "root tips"]
