@@ -4,6 +4,7 @@ import os
 
 import matplotlib.pyplot as plt  # |\label{l2_1g:importStart}|
 import pandas as pd
+import openpyxl
 
 import plantbox as pb
 from plantbox.structural.MappedOrganism import MappedPlantPython  # |\label{l2_1g:importEnd}|
@@ -13,7 +14,7 @@ sim_time = 14  # [day]  # |\label{l2_1g:defineStart}|
 plant = MappedPlantPython()  # |\label{l2_1g:MappedPlantPython}|
 path = "../../modelparameter/structural/plant/"
 #filename = "fspm2023"
-filename = "telephone_pole"
+filename = "christmas_tree"
 plant.readParameters(path + filename + ".xml")
 
 soil_domain = pb.SDF_PlantContainer(500, 500, 500, True)  # to avoid root growing aboveground
@@ -31,8 +32,14 @@ for organ_id, poly in enumerate(plant.getPolylines(pb.root)):
         root_rows.append(
             {"organ_id": organ_id, "node_index": node_index, "x": x, "y": y}
         )
+#print(root_rows)
 os.makedirs("results", exist_ok=True)
 pd.DataFrame(root_rows).to_excel("results/example_2_4_root_xy.xlsx", index=False)
+wb = openpyxl.load_workbook("results/example_2_4_root_xy.xlsx")
+sheet = wb.active
+for row in sheet.iter_rows(values_only=True):
+    print(row)
+
 
 fig, ax = figure_style.subplots11()  # |\label{l2_1g:plotStart}|
 organ_name = ["root", "stem", "leaf", "root tips"]
