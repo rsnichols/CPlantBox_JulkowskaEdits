@@ -28,9 +28,9 @@ plant.simulate(sim_time, verbose)  # |\label{l2_1g:defineEnd}|
 root_rows = []
 for organ_id, poly in enumerate(plant.getPolylines(pb.root)):
     nodes = plant.toNumpy(poly)
-    for node_index, (x, y, _z) in enumerate(nodes):
+    for node_index, (x, _y, z) in enumerate(nodes):
         root_rows.append(
-            {"organ_id": organ_id, "node_index": node_index, "x": x, "y": y}
+            {"organ_id": organ_id, "node_index": node_index, "x": x, "z": z}
         )
 #print(root_rows)
 os.makedirs("results", exist_ok=True)
