@@ -66,18 +66,25 @@ def apply_six_zone_conductivities(hm, plant, main_subtypes=None, lateral_subtype
 
     n = ms.getNumberOfMappedSegments()
     origins = plant.getSegmentOrigins(-1)
-    if len(origins) != n:
+    # MappedPlant may insert one extra collar segment (extraNode) before real organs
+    shift = n - len(origins)
+    if shift < 0:
         raise RuntimeError(
-            f"Segment count mismatch: mapped segments={n}, getSegmentOrigins={len(origins)}"
+            f"More segment origins ({len(origins)}) than mapped segments ({n})"
         )
 
     ot_root = int(pb.OrganTypes.root)
     kr = np.zeros(n)
     kx = np.zeros(n)
 
+    # Collar / seed link segment(s) — not in getSegmentOrigins()
+    for si in range(shift):
+        kr[si] = KR_MAIN["p"]
+        kx[si] = KX_MAIN["p"]
+
     organ_segs = defaultdict(list)
-    for si in range(n):
-        organ_segs[origins[si].getId()].append(si)
+    for si in range(shift, n):
+        organ_segs[origins[si - shift].getId()].append(si)
 
     for seg_indices in organ_segs.values():
         if ms.organTypes[seg_indices[0]] != ot_root:
