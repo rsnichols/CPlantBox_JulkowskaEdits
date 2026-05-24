@@ -30,7 +30,7 @@ architectures = [
 ]
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-path = os.path.normpath(os.path.join(script_dir, "../../modelparameter/structural/rootsystem/"))
+path = os.path.normpath(os.path.join(script_dir, "../../modelparameter/structural/plant/"))
 results_dir = os.path.join(script_dir, "results")
 os.makedirs(results_dir, exist_ok=True)
 
