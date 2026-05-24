@@ -54,7 +54,7 @@ def zone_from_tip_fraction(rel_dist_from_tip):
     return "p"
 
 
-def apply_six_zone_conductivities(hm, main_subtypes=None, lateral_subtypes=None):
+def apply_six_zone_conductivities(hm, plant, main_subtypes=None, lateral_subtypes=None):
     """Set per-segment kr/kx on hm.params from six-zone conductivities."""
     if main_subtypes is None:
         main_subtypes = MAIN_SUBTYPES
@@ -65,13 +65,19 @@ def apply_six_zone_conductivities(hm, main_subtypes=None, lateral_subtypes=None)
     ms.calcExchangeZoneCoefs()
 
     n = ms.getNumberOfMappedSegments()
+    origins = plant.getSegmentOrigins(-1)
+    if len(origins) != n:
+        raise RuntimeError(
+            f"Segment count mismatch: mapped segments={n}, getSegmentOrigins={len(origins)}"
+        )
+
     ot_root = int(pb.OrganTypes.root)
     kr = np.zeros(n)
     kx = np.zeros(n)
 
     organ_segs = defaultdict(list)
     for si in range(n):
-        organ_segs[ms.segO[si].getId()].append(si)
+        organ_segs[origins[si].getId()].append(si)
 
     for seg_indices in organ_segs.values():
         if ms.organTypes[seg_indices[0]] != ot_root:
@@ -122,7 +128,7 @@ for name in architectures:
 
     for t in range(0, sim_time):
         plant.simulate(dt)
-        apply_six_zone_conductivities(hm)
+        apply_six_zone_conductivities(hm, plant)
         hm.update(t)
         krs, _ = hm.get_krs(t)
         krs_values.append(krs)
