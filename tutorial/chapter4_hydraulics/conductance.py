@@ -74,8 +74,8 @@ def apply_six_zone_conductivities(hm, plant, main_subtypes=None, lateral_subtype
         )
 
     ot_root = int(pb.OrganTypes.root)
-    kr = np.zeros(n)
-    kx = np.zeros(n)
+    kr = np.full(n, KR_LAT["p"])
+    kx = np.full(n, KX_LAT["p"])
 
     # Collar / seed link segment(s) — not in getSegmentOrigins()
     for si in range(shift):
@@ -136,7 +136,6 @@ for name in architectures:
     for t in range(0, sim_time):
         plant.simulate(dt)
         apply_six_zone_conductivities(hm, plant)
-        hm.update(t)
         krs, _ = hm.get_krs(t)
         krs_values.append(krs)
 
