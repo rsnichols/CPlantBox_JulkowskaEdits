@@ -11,14 +11,14 @@ from plantbox.functional.PlantHydraulicParameters import PlantHydraulicParameter
 from plantbox.visualisation import figure_style
 
 # Simulation parameters |\label{l42:parameters}|
-sim_time = 70  # simulate from day 1 to 70
+sim_time = 21  # simulate from day 1 to 21
+#sim_time = 70
 dt = 1
 
 architectures = [  # |\label{l42:architecture}|
-    "Heliantus_Pages_2013",
-    "Glycine_max_Moraes2020_opt2",
-    "Brassica_oleracea_Vansteenkiste_2014",
-    "Zea_mays_1_Leitner_2010",
+    "christmas_tree",
+    "droopy_telephone_pole",
+    "telephone_pole",
 ]
 
 path = "../../modelparameter/structural/rootsystem/"  # |\label{l42:architecture_end}|
