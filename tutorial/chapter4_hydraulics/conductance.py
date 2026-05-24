@@ -30,7 +30,7 @@ architectures = [
 ]
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-path = os.path.normpath(os.path.join(script_dir, "../../modelparameter/structural/plant/"))
+path = os.path.normpath(os.path.join(script_dir, "../../modelparameter/structural/rootsystem/"))
 results_dir = os.path.join(script_dir, "results")
 os.makedirs(results_dir, exist_ok=True)
 
@@ -113,6 +113,20 @@ def apply_six_zone_conductivities(hm, plant, main_subtypes=None, lateral_subtype
     hm.params.setKxValues(kx.tolist())
 
 
+def print_krs_table(architectures, krs_all, sim_time):
+    """Print Krs vs day — same values as plotted in the graphs."""
+    col_width = max(12, max(len(name) for name in architectures))
+    header = f"{'day':>5}  " + "  ".join(f"{name:>{col_width}s}" for name in architectures)
+    sep = "-" * len(header)
+
+    print("\nKrs (cm2 day-1) vs root system age:")
+    print(header)
+    print(sep)
+    for t in range(sim_time):
+        values = "  ".join(f"{krs_all[i][t]:>{col_width}.6e}" for i in range(len(architectures)))
+        print(f"{t:5d}  {values}")
+
+
 # Simulation loop
 krs_all = []
 lengths = []
@@ -149,6 +163,8 @@ for name in architectures:
     krs_all.append(krs_values)
     lengths.append(arch_lengths[-1])
     surfaces.append(arch_surfaces[-1])
+
+print_krs_table(architectures, krs_all, sim_time)
 
 # Plotting
 n_arch = len(architectures)
