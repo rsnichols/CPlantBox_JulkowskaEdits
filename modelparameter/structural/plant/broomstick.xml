@@ -31,21 +31,22 @@
         <parameter name="hairsElongation" value="0"/>
         <parameter name="hairsLength" value="0"/>
         <parameter name="hairsZone" value="0"/>
-        <parameter name="la" value="35"/>
-        <!--Apical zone: branching zone length = lmax - la - lb ≈ 24.7 cm-->
+        <parameter name="la" value="56"/>
+        <!--Apical zone: laterals only in basal ~3.7 cm (lmax - la - lb)-->
         <parameter name="lb" value="0.3"/>
+        <!--Basal zone [cm]: no laterals in first 0.3 cm below seed-->
         <parameter name="ldelay" value="-1"/>
         <parameter name="lmax" value="60"/>
-        <parameter name="ln" value="24"/>
-        <!--One inter-lateral step → laterals at ~24 cm (middle), not at base-->
+        <parameter name="ln" value="1.2"/>
+        <!--Inter-lateral spacing near taproot base [cm]-->
         <parameter name="lnk" value="0"/>
         <parameter name="r" value="2.4"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0"/>
         <parameter name="tropismN" value="0.5"/>
         <parameter name="tropismS" value="0.05"/>
-        <parameter name="successor" ruleId="0" numLat="4" where="1" subType="2" organType="2" percentage="1"/>
-        <!--4 laterals at linking node 1 (~24 cm); do not use where=2 (needs ~36 cm growth)-->
+        <parameter name="successor" ruleId="0" numLat="1" where="1,2,3,4" subType="2" organType="2" percentage="1"/>
+        <!--4 laterals at linking nodes 1-4 just above taproot base-->
     </root>
     <root name="lateral1" subType="2">
         <parameter name="gf" value="1"/>
