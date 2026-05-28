@@ -23,24 +23,24 @@
         <parameter name="simulationTime" value="240"/>
     </seed>
     <root name="taproot" subType="1">
-        <parameter name="gf" value="1"/>
+        <parameter name="gf" value="3"/>
+        <!--Same growth function as christmas_tree / telephone_pole-->
         <parameter name="tropismT" value="1"/>
-        <parameter name="a" value="0.05"/>
+        <parameter name="a" value="0.050000001"/>
         <parameter name="dx" value="0.5"/>
         <parameter name="dxMin" value="1e-06"/>
         <parameter name="hairsElongation" value="0"/>
         <parameter name="hairsLength" value="0"/>
         <parameter name="hairsZone" value="0"/>
-        <parameter name="la" value="56"/>
-        <!--Apical zone: laterals only in basal ~3.7 cm (lmax - la - lb)-->
+        <parameter name="la" value="12"/>
+        <!--Apical zone [cm]: same taproot length as other architectures-->
         <parameter name="lb" value="0.3"/>
-        <!--Basal zone [cm]: no laterals in first 0.3 cm below seed-->
         <parameter name="ldelay" value="-1"/>
         <parameter name="lmax" value="60"/>
-        <parameter name="ln" value="1.2"/>
-        <!--Inter-lateral spacing near taproot base [cm]-->
+        <parameter name="ln" value="1"/>
+        <!--Inter-lateral spacing [cm]; successor where=1,2,3,4 keeps bristles at base-->
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="2.4"/>
+        <parameter name="r" value="2.4000001"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0"/>
         <parameter name="tropismN" value="0.5"/>
@@ -61,14 +61,14 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="-1"/>
-        <parameter name="lmax" value="55"/>
-        <!--Nearly as long as taproot (lmax=60)-->
+        <parameter name="lmax" value="20"/>
+        <!--4 x 20 cm laterals = 8 x 10 cm (matched total root length at day 70)-->
         <parameter name="lmaxs" value="0"/>
         <parameter name="ln" value="1e+09"/>
         <!--No second-order laterals-->
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="2.4"/>
-        <!--Match taproot growth rate so laterals reach lmax in sim time-->
+        <parameter name="r" value="2"/>
+        <!--Same lateral growth as christmas_tree / telephone_pole-->
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0.78539816"/>
         <!--45 deg from vertical taproot [rad]-->
@@ -87,11 +87,11 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="-1"/>
-        <parameter name="lmax" value="55"/>
+        <parameter name="lmax" value="20"/>
         <parameter name="lmaxs" value="0"/>
         <parameter name="ln" value="1e+09"/>
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="2.4"/>
+        <parameter name="r" value="2"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0.78539816"/>
         <parameter name="tropismN" value="0"/>
