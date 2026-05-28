@@ -50,8 +50,8 @@
     </root>
     <root name="lateral1" subType="2">
         <parameter name="gf" value="1"/>
-        <parameter name="tropismT" value="2"/>
-        <!--Exotropism: branches spread sideways in 2D side view-->
+        <parameter name="tropismT" value="0"/>
+        <!--Plagiotropic: keep ~45 deg emergence angle-->
         <parameter name="a" value="0.04"/>
         <parameter name="dx" value="0.5"/>
         <parameter name="dxMin" value="1e-06"/>
@@ -61,15 +61,19 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="-1"/>
-        <parameter name="lmax" value="20"/>
+        <parameter name="lmax" value="55"/>
+        <!--Nearly as long as taproot (lmax=60)-->
         <parameter name="lmaxs" value="0"/>
-        <parameter name="ln" value="1"/>
+        <parameter name="ln" value="1e+09"/>
+        <!--No second-order laterals-->
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="2"/>
+        <parameter name="r" value="2.4"/>
+        <!--Match taproot growth rate so laterals reach lmax in sim time-->
         <parameter name="rlt" value="1e+09"/>
-        <parameter name="theta" value="1.57079633"/>
+        <parameter name="theta" value="0.78539816"/>
+        <!--45 deg from vertical taproot [rad]-->
         <parameter name="tropismN" value="0"/>
-        <parameter name="tropismS" value="0.1"/>
+        <parameter name="tropismS" value="0"/>
     </root>
     <root name="lateral2" subType="3">
         <parameter name="gf" value="1"/>
@@ -83,11 +87,11 @@
         <parameter name="la" value="0.1"/>
         <parameter name="lb" value="0"/>
         <parameter name="ldelay" value="-1"/>
-        <parameter name="lmax" value="20"/>
+        <parameter name="lmax" value="55"/>
         <parameter name="lmaxs" value="0"/>
-        <parameter name="ln" value="1"/>
+        <parameter name="ln" value="1e+09"/>
         <parameter name="lnk" value="0"/>
-        <parameter name="r" value="2"/>
+        <parameter name="r" value="2.4"/>
         <parameter name="rlt" value="1e+09"/>
         <parameter name="theta" value="0.78539816"/>
         <parameter name="tropismN" value="0"/>
