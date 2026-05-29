@@ -10,7 +10,7 @@ import plantbox as pb
 from plantbox.structural.MappedOrganism import MappedPlantPython  # |\label{l2_1g:importEnd}|
 from plantbox.visualisation import figure_style
 
-sim_time = 21  # [day]  # |\label{l2_1g:defineStart}|
+sim_time = 250  # [day]  # |\label{l2_1g:defineStart}|
 plant = MappedPlantPython()  # |\label{l2_1g:MappedPlantPython}|
 path = "../../modelparameter/structural/plant/"
 #filename = "fspm2023"
