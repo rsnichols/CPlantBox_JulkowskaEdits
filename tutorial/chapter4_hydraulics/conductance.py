@@ -167,18 +167,21 @@ for name in architectures:
 
 print_krs_table(architectures, krs_all, sim_time)
 
-# Plotting — all architectures on one axes
-fig, ax = figure_style.subplots11()
-days = range(0, sim_time)
+# Plotting
+n_arch = len(architectures)
+fig, axes = figure_style.subplots12(1, n_arch, sharey=True)
 
-for i, name in enumerate(architectures):
-    ax.plot(days, krs_all[i], label=name)
+if n_arch == 1:
+    axes = [axes]
 
-ax.set_xlabel("Root system age (day)")
-ax.set_ylabel("Krs (cm$^2$ day$^{-1}$)")
-ax.set_yscale("log")
-ax.legend()
-ax.grid(True)
+for i, ax in enumerate(axes):
+    ax.plot(range(0, sim_time), krs_all[i])
+    ax.set_title(architectures[i])
+    ax.set_xlabel("Root system age (day)")
+    ax.set_yscale("log")
+    if i == 0:
+        ax.set_ylabel("Krs (cm$^2$ day$^{-1}$)")
+    ax.grid(True)
 
 plt.tight_layout()
 plt.show()
