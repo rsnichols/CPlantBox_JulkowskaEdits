@@ -20,11 +20,11 @@ from plantbox.functional.PlantHydraulicParameters import PlantHydraulicParameter
 from plantbox.visualisation import figure_style
 
 # Simulation parameters
-sim_time = 250  # simulate from day 0 to sim_time - 1
+sim_time = 10  # simulate from day 0 to sim_time - 1
 dt = 1
 
 architectures = [
-    "christmas_tree",
+    #"christmas_tree",
     #"droopy_telephone_pole",
     "broomstick",
     "telephone_pole",
