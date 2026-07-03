@@ -11,13 +11,13 @@ from plantbox.functional.PlantHydraulicParameters import PlantHydraulicParameter
 from plantbox.visualisation import figure_style
 
 # Simulation parameters |\label{l42:parameters}|
-sim_time = 21  # simulate from day 1 to 21
+sim_time = 10  # simulate from day 1 to 21
 #sim_time = 70
 dt = 1
 
 architectures = [  # |\label{l42:architecture}|
     "christmas_tree",
-    "droopy_telephone_pole",
+    #"droopy_telephone_pole",
     "telephone_pole",
 ]
 
