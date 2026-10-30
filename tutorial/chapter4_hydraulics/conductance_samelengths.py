@@ -134,13 +134,18 @@ def _scale_root_parameters(plant, length_scale, radius_scale):
         param.a_s *= radius_scale
 
 
-def match_length_and_surface(plant, name):
-    """Grow to sim_time, then scale this architecture onto the shared targets.
+def match_length_and_surface(xml_path, name):
+    """Return a new plant whose parameters hit the day-14 length and surface.
 
-    Leaves the plant at the end of the calibration run. Call initialize()
-    again before the conductance loop.
+    Each trial is a new MappedPlant. MappedPlant keeps its node list across
+    initialize(), so the conductance plant must be initialized only once.
     """
+    length_scale = 1.0
+    radius_scale = 1.0
     for round_index in range(3):
+        plant = pb.MappedPlant()
+        plant.readParameters(xml_path)
+        _scale_root_parameters(plant, length_scale, radius_scale)
         plant.setSeed(1)
         plant.initialize(False)
         for _ in range(sim_time):
@@ -152,15 +157,21 @@ def match_length_and_surface(plant, name):
         )
         if length <= 0.0 or surface <= 0.0:
             raise RuntimeError(f"{name} has no root length or surface to match.")
-        length_scale = TARGET_LENGTH_CM / length
-        radius_scale = TARGET_SURFACE_CM2 / (length_scale * surface)
-        if abs(length_scale - 1.0) < 1e-3 and abs(radius_scale - 1.0) < 1e-3:
+        next_length = TARGET_LENGTH_CM / length
+        next_radius = TARGET_SURFACE_CM2 / (next_length * surface)
+        if abs(next_length - 1.0) < 1e-3 and abs(next_radius - 1.0) < 1e-3:
             break
-        _scale_root_parameters(plant, length_scale, radius_scale)
+        length_scale *= next_length
+        radius_scale *= next_radius
         print(
-            f"  applied length scale {length_scale:.6f}, "
-            f"radius scale {radius_scale:.6f}"
+            f"  applied length scale {next_length:.6f}, "
+            f"radius scale {next_radius:.6f}"
         )
+
+    plant = pb.MappedPlant()
+    plant.readParameters(xml_path)
+    _scale_root_parameters(plant, length_scale, radius_scale)
+    return plant
 
 
 def print_krs_table(architectures, krs_all, sim_time):
@@ -186,9 +197,8 @@ csv_data = []
 for name in architectures:
     print(f"\nSimulating: {name}")
 
-    plant = pb.MappedPlant()
-    plant.readParameters(os.path.join(path, name + ".xml"))
-    match_length_and_surface(plant, name)
+    xml_path = os.path.join(path, name + ".xml")
+    plant = match_length_and_surface(xml_path, name)
     plant.setSeed(1)
     plant.initialize()
 
