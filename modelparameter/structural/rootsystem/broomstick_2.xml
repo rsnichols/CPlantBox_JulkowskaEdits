@@ -1,0 +1,128 @@
+
+    <seed name="few_long_basal_laterals_2d" subType="0">
+        <parameter name="delayDefinition" value="0"/>
+        <!--method implemented to evaluate root lateral growth delay (0: distance based, 1: delay based defined by parent organ)-->
+        <parameter name="delayDefinitionShoot" value="0"/>
+        <!--method implemented to evaluate shoot lateral growth delay (0: distance based, 1: delay based defined by parent organ)-->
+        <parameter name="maxTil" value="0"/>
+        <!--Maximal number of tillers [1]-->
+        <parameter name="a" value="0.1"/>
+        <!--radius [cm]-->
+        <parameter name="delayB" value="0"/>
+        <!--Time delay between the basal roots [day]-->
+        <parameter name="delayRC" value="1e+09"/>
+        <!--Delay between the root crowns [day]-->
+        <parameter name="delaySB" value="1e+09"/>
+        <!--Time delay between the shoot borne roots [day]-->
+        <parameter name="delayTil" value="1e+09"/>
+        <!--Time delay between the tillers [day]-->
+        <parameter name="dx" value="0.25"/>
+        <!--Axial resolution [cm] (maximal segment size)-->
+        <parameter name="dxMin" value="1e-06"/>
+        <!--Axial resolution [cm] (minimal segment size)-->
+        <parameter name="firstB" value="1e+09"/>
+        <!--Emergence of first basal root [day]-->
+        <parameter name="firstSB" value="1e+09"/>
+        <!--First emergence of a shoot borne root [day]-->
+        <parameter name="firstTil" value="1e+09"/>
+        <!--Emergence of first tiller [day]-->
+        <parameter name="ldelay" value="-1"/>
+        <!--Lateral emergence delay [day]-->
+        <parameter name="maxB" value="0"/>
+        <!--Maximal number of basal roots [1]-->
+        <parameter name="nC" value="0"/>
+        <!--Maximal number of roots per root crown [1]-->
+        <parameter name="nz" value="0"/>
+        <!--Distance between the root crowns along the shoot [cm]-->
+        <parameter name="seedPos.x" value="0"/>
+        <!--X-Coordinate of seed position [cm]-->
+        <parameter name="seedPos.y" value="0"/>
+        <!--Y-Coordinate of seed position [cm]-->
+        <parameter name="seedPos.z" value="-3"/>
+        <!--Z-Coordinate of seed position [cm]-->
+        <parameter name="simulationTime" value="20"/>
+        <!--Recommended final simulation time  [day]-->
+    </seed>
+    <root name="taproot" subType="1">
+        <parameter name="gf" value="2"/>
+        <!--Growth function (1 = negative exponential, 2 = linear until lmax)-->
+        <parameter name="tropismT" value="1"/>
+        <!--Type of root tropism (plagio = 0, gravi = 1, exo = 2, hydro, chemo = 3)-->
+        <parameter name="a" value="0.05"/>
+        <!--Root radius [cm]-->
+        <parameter name="colorR" value="0.35"/>
+        <!--Root color, red component [0.-1.]-->
+        <parameter name="colorG" value="0.22"/>
+        <!--Root color, green component [0.-1.]-->
+        <parameter name="colorB" value="0.12"/>
+        <!--Root color, blue component [0.-1.]-->
+        <parameter name="dx" value="0.25"/>
+        <!--Axial resolution [cm] (maximal segment size)-->
+        <parameter name="dxMin" value="1e-06"/>
+        <!--Axial resolution [cm] (minimal segment size)-->
+        <parameter name="la" value="19"/>
+        <!--Apical zone [cm]. Long, so only the base can branch.-->
+        <parameter name="lb" value="0.25"/>
+        <!--Basal zone [cm]. First lateral emerges 0.25 cm below the seed.-->
+        <parameter name="ldelay" value="-1"/>
+        <!--Lateral root emergence delay [day]. Unused while delayDefinition is 0.-->
+        <parameter name="lmax" value="20"/>
+        <!--Maximal root length [cm]-->
+        <parameter name="ln" value="0.25"/>
+        <!--Inter-lateral distance [cm]. Three intervals in a 0.75 cm branching zone give 4 laterals.-->
+        <parameter name="lnk" value="0"/>
+        <!--Slope of inter-lateral distances [1]-->
+        <parameter name="r" value="2"/>
+        <!--Initial growth rate [cm day-1]. Reaches lmax at day 10.-->
+        <parameter name="rlt" value="1e+09"/>
+        <!--Root life time [day]-->
+        <parameter name="theta" value="0"/>
+        <!--Angle between root and parent root [rad]. Straight down.-->
+        <parameter name="tropismN" value="0"/>
+        <!--Number of trials of root tropism. Zero keeps the root straight.-->
+        <parameter name="tropismS" value="0"/>
+        <!--Mean value of expected change of root tropism [1/cm]-->
+        <parameter name="successor" ruleId="0" numLat="1" subType="2" organType="2" percentage="1"/>
+        <!--Every branching point produces one first-order lateral (subtype 2).-->
+    </root>
+    <root name="longlaterals" subType="2">
+        <parameter name="gf" value="2"/>
+        <!--Growth function (1 = negative exponential, 2 = linear until lmax)-->
+        <parameter name="tropismT" value="0"/>
+        <!--Plagiotropism: keep the insertion angle instead of bending downward.-->
+        <parameter name="a" value="0.03"/>
+        <!--Root radius [cm]-->
+        <parameter name="colorR" value="0.55"/>
+        <!--Root color, red component [0.-1.]-->
+        <parameter name="colorG" value="0.40"/>
+        <!--Root color, green component [0.-1.]-->
+        <parameter name="colorB" value="0.18"/>
+        <!--Root color, blue component [0.-1.]-->
+        <parameter name="dx" value="0.25"/>
+        <!--Axial resolution [cm] (maximal segment size)-->
+        <parameter name="dxMin" value="1e-06"/>
+        <!--Axial resolution [cm] (minimal segment size)-->
+        <parameter name="la" value="18"/>
+        <!--Apical zone [cm]. Ignored: this type has no successor, so it never branches.-->
+        <parameter name="lb" value="0"/>
+        <!--Basal zone [cm]-->
+        <parameter name="ldelay" value="-1"/>
+        <!--Lateral root emergence delay [day]-->
+        <parameter name="lmax" value="18"/>
+        <!--Maximal root length [cm]. 90 percent of the taproot.-->
+        <parameter name="ln" value="0"/>
+        <!--Inter-lateral distance [cm]. Zero means no branching points.-->
+        <parameter name="lnk" value="0"/>
+        <!--Slope of inter-lateral distances [1]-->
+        <parameter name="r" value="2"/>
+        <!--Initial growth rate [cm day-1]. Reaches lmax 9 days after emergence.-->
+        <parameter name="rlt" value="1e+09"/>
+        <!--Root life time [day]-->
+        <parameter name="theta" value="1.0472"/>
+        <!--Angle between root and parent root [rad]. 60 degrees from the taproot.-->
+        <parameter name="tropismN" value="0"/>
+        <!--Number of trials of root tropism. Zero keeps each lateral straight.-->
+        <parameter name="tropismS" value="0"/>
+        <!--Mean value of expected change of root tropism [1/cm]-->
+    </root>
+</plant>
