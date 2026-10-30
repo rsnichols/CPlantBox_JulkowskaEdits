@@ -1,12 +1,3 @@
-"""Whole root system conductance (Krs) for different root architectures
-
-Radial and axial conductivities follow six segment classes (example6b / M3.2 benchmark):
-  Main axis:  proximal (P), middle (M), tip (T)
-  Lateral:    proximal (P), middle (M), tip (T)
-
-Zones are assigned per root organ from distance to the tip (thirds along each organ).
-"""
-
 import csv
 import os
 from collections import defaultdict
@@ -20,8 +11,13 @@ from plantbox.functional.PlantHydraulicParameters import PlantHydraulicParameter
 from plantbox.visualisation import figure_style
 
 # Simulation parameters
-sim_time = 21  # simulate from day 0 to sim_time - 1
+sim_time = 14  # days of growth; length and surface are matched at this age
 dt = 1
+
+# Shared size at sim_time. Same targets as tutorial/chapter2_structure/day14_match.py.
+TARGET_LENGTH_CM = 100.0
+TARGET_SURFACE_CM2 = 20.0
+_LENGTH_FIELDS = ("lmax", "lmaxs", "la", "las", "lb", "lbs", "ln", "lns", "r", "rs")
 
 architectures = [
     "christmas_tree",
@@ -120,6 +116,53 @@ def apply_six_zone_conductivities(hm, plant, main_subtypes=None, lateral_subtype
     hm.params.setKxValues(kx.tolist())
 
 
+def _total_length_and_surface(plant):
+    """Same totals the summary prints: sum of segment length and surface."""
+    total_length = float(np.sum(np.array(plant.getParameter("length"))))
+    total_surface = float(np.sum(np.array(plant.getParameter("surface"))))
+    return total_length, total_surface
+
+
+def _scale_root_parameters(plant, length_scale, radius_scale):
+    """Scale elongation together so emergence times stay put, then scale radii."""
+    for param in plant.getOrganRandomParameter(pb.root):
+        if param.subType == 0 or not hasattr(param, "lmax"):
+            continue
+        for name in _LENGTH_FIELDS:
+            setattr(param, name, getattr(param, name) * length_scale)
+        param.a *= radius_scale
+        param.a_s *= radius_scale
+
+
+def match_length_and_surface(plant, name):
+    """Grow to sim_time, then scale this architecture onto the shared targets.
+
+    Leaves the plant at the end of the calibration run. Call initialize()
+    again before the conductance loop.
+    """
+    for round_index in range(3):
+        plant.setSeed(1)
+        plant.initialize(False)
+        for _ in range(sim_time):
+            plant.simulate(dt)
+        length, surface = _total_length_and_surface(plant)
+        print(
+            f"  {name} calibration {round_index + 1}: "
+            f"length {length:.4f} cm, surface {surface:.4f} cm2"
+        )
+        if length <= 0.0 or surface <= 0.0:
+            raise RuntimeError(f"{name} has no root length or surface to match.")
+        length_scale = TARGET_LENGTH_CM / length
+        radius_scale = TARGET_SURFACE_CM2 / (length_scale * surface)
+        if abs(length_scale - 1.0) < 1e-3 and abs(radius_scale - 1.0) < 1e-3:
+            break
+        _scale_root_parameters(plant, length_scale, radius_scale)
+        print(
+            f"  applied length scale {length_scale:.6f}, "
+            f"radius scale {radius_scale:.6f}"
+        )
+
+
 def print_krs_table(architectures, krs_all, sim_time):
     """Print Krs vs day — same values as plotted in the graphs."""
     col_width = max(12, max(len(name) for name in architectures))
@@ -145,6 +188,8 @@ for name in architectures:
 
     plant = pb.MappedPlant()
     plant.readParameters(os.path.join(path, name + ".xml"))
+    match_length_and_surface(plant, name)
+    plant.setSeed(1)
     plant.initialize()
 
     params = PlantHydraulicParameters()
