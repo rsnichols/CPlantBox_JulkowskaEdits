@@ -1,7 +1,7 @@
 <plant>
     <seed name="broomstick_2" subType="0">
-        <parameter name="delayDefinition" value="0"/>
-        <!--method implemented to evaluate root lateral growth delay (0: distance based, 1: delay based defined by parent organ)-->
+        <parameter name="delayDefinition" value="1"/>
+        <!--Time-based delay from the parent ldelay. Distance-based delay would wait out the long apical zone, so the basal laterals would still be short at day 14.-->
         <parameter name="delayDefinitionShoot" value="0"/>
         <!--method implemented to evaluate shoot lateral growth delay (0: distance based, 1: delay based defined by parent organ)-->
         <parameter name="maxTil" value="0"/>
@@ -64,8 +64,8 @@
         <!--Apical zone [cm]. Long, so only the base can branch.-->
         <parameter name="lb" value="0.25"/>
         <!--Basal zone [cm]. First lateral emerges 0.25 cm below the seed.-->
-        <parameter name="ldelay" value="-1"/>
-        <!--Lateral root emergence delay [day]. Unused while delayDefinition is 0.-->
+        <parameter name="ldelay" value="0"/>
+        <!--Lateral root emergence delay [day]. Each basal lateral starts when its node is created.-->
         <parameter name="lmax" value="20"/>
         <!--Maximal root length [cm]-->
         <parameter name="ln" value="0.25"/>
@@ -108,14 +108,14 @@
         <!--Basal zone [cm]-->
         <parameter name="ldelay" value="-1"/>
         <!--Lateral root emergence delay [day]-->
-        <parameter name="lmax" value="18"/>
-        <!--Maximal root length [cm]. 90 percent of the taproot.-->
+        <parameter name="lmax" value="20"/>
+        <!--Maximal root length [cm]. Same as the taproot, so the laterals match it once they have grown for about 10 days.-->
         <parameter name="ln" value="0"/>
         <!--Inter-lateral distance [cm]. Zero means no branching points.-->
         <parameter name="lnk" value="0"/>
         <!--Slope of inter-lateral distances [1]-->
         <parameter name="r" value="2"/>
-        <!--Initial growth rate [cm day-1]. Reaches lmax 9 days after emergence.-->
+        <!--Initial growth rate [cm day-1]. Same as the taproot, so both reach 20 cm by about day 10.-->
         <parameter name="rlt" value="1e+09"/>
         <!--Root life time [day]-->
         <parameter name="theta" value="1.0472"/>
