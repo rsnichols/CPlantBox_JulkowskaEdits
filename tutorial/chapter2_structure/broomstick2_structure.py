@@ -78,7 +78,8 @@ def plot_roots_2d(plant, sim_day):
 
 
 plant = MappedPlantPython()  # |\label{l2_1g:MappedPlantPython}|
-path = os.path.join(script_dir, "../../modelparameter/structural/plant/")
+#path = os.path.join(script_dir, "../../modelparameter/structural/plant/")
+path = os.path.join(script_dir, "../../modelparameter/structural/rootsystem/")
 filename = "broomstick_2"
 plant.readParameters(os.path.normpath(os.path.join(path, filename + ".xml")))
 
