@@ -39,7 +39,7 @@ os.makedirs(results_dir, exist_ok=True)
 
 KR_MAIN = {"p": 2.36e-05, "m": 2.42e-05, "t": 2.4e-04}  # MP, MM, MT
 KR_LAT = {"p": 1.5e-04, "m": 1.52e-04, "t": 2.37e-04}  # LP, LM, LT
-KX_MAIN = {"p": 1.85e-06, "m": 2.81-07, "t": 3.18e-07}  # MP, MM, MT
+KX_MAIN = {"p": 1.85e-06, "m": 2.81e-07, "t": 3.18e-07}  # MP, MM, MT
 KX_LAT = {"p": 3.34e-07, "m": 3.73e-07, "t": 7.66e-07}  # LP, LM, LT
 
 #OLD: KR_MAIN = {"p": 8.83e-05, "m": 8.76e-05, "t": 9.69e-05}  # MP, MM, MT
