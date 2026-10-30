@@ -20,13 +20,13 @@ from plantbox.functional.PlantHydraulicParameters import PlantHydraulicParameter
 from plantbox.visualisation import figure_style
 
 # Simulation parameters
-sim_time = 10  # simulate from day 0 to sim_time - 1
+sim_time = 14  # simulate from day 0 to sim_time - 1
 dt = 1
 
 architectures = [
-    #"christmas_tree",
-    #"droopy_telephone_pole",
-    "broomstick",
+    "christmas_tree",
+    "droopy_telephone_pole",
+    "broomstick_2",
     "telephone_pole",
 ]
 
@@ -36,10 +36,16 @@ results_dir = os.path.join(script_dir, "results")
 os.makedirs(results_dir, exist_ok=True)
 
 # Conductivities [kr: 1/day], [kx: cm3/day] — from example6b_xylemflux.py / M3.2 benchmark
-KR_MAIN = {"p": 8.83e-05, "m": 8.76e-05, "t": 9.69e-05}  # MP, MM, MT
-KR_LAT = {"p": 8.67e-05, "m": 8.51e-05, "t": 8.65e-05}  # LP, LM, LT
-KX_MAIN = {"p": 2.2e-06, "m": 3.44e-07, "t": 3.85e-07}  # MP, MM, MT
-KX_LAT = {"p": 4.18e-07, "m": 4.16e-07, "t": 4.20e-07}  # LP, LM, LT
+
+KR_MAIN = {"p": 2.36e-05, "m": 2.42e-05, "t": 0.00024}  # MP, MM, MT
+KR_LAT = {"p": 0.00015, "m": 0.000152, "t": 0.000237}  # LP, LM, LT
+KX_MAIN = {"p": 1.85e-06, "m": 2.81-07, "t": 3.18e-07}  # MP, MM, MT
+KX_LAT = {"p": 3.34e-07, "m": 3.73e-07, "t": 7.66e-07}  # LP, LM, LT
+
+#OLD: KR_MAIN = {"p": 8.83e-05, "m": 8.76e-05, "t": 9.69e-05}  # MP, MM, MT
+#KR_LAT = {"p": 8.67e-05, "m": 8.51e-05, "t": 8.65e-05}  # LP, LM, LT
+#KX_MAIN = {"p": 2.2e-06, "m": 3.44e-07, "t": 3.85e-07}  # MP, MM, MT
+#KX_LAT = {"p": 4.18e-07, "m": 4.16e-07, "t": 4.20e-07}  # LP, LM, LT
 
 # subType groups (adjust if your XML uses different numbering)
 MAIN_SUBTYPES = {1, 4}   # taproot / main axes
