@@ -1,5 +1,5 @@
-
-    <seed name="few_long_basal_laterals_2d" subType="0">
+<plant>
+    <seed name="broomstick_2" subType="0">
         <parameter name="delayDefinition" value="0"/>
         <!--method implemented to evaluate root lateral growth delay (0: distance based, 1: delay based defined by parent organ)-->
         <parameter name="delayDefinitionShoot" value="0"/>
