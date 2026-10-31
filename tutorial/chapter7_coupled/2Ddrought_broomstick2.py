@@ -20,9 +20,13 @@ def sinusoidal(t):
 
 #######################################################################################
 # Parameters |\label{l72c:param}| -- WHAT WE CHANGE!
-box_min = [-35.0, -10.0, -50.0]  # cm
-box_max = [35.0, 10.0, 0.0]  # cm
-cell_number = [17, 5, 50]  # ~4*4*1 cm3
+#box_min = [-35.0, -10.0, -50.0]  # cm
+#box_max = [35.0, 10.0, 0.0]  # cm
+#cell_number = [17, 5, 50]  # ~4*4*1 cm3
+
+box_min = [-35.0, -0.5, -50.0]  # cm
+box_max = [35.0, 0.5, 0.0]       # cm
+cell_number = [17, 1, 50]
 
 path = "../../modelparameter/structural/rootsystem/"
 filename = "broomstick_2"
@@ -53,8 +57,8 @@ s.setCriticalPressure(wilting_point)  # |\label{l72c:soil_end}|
 plant = pb.MappedPlant()  # |\label{l72c:soil_plant}|
 plant.enableExtraNode()
 plant.readParameters(path + filename + ".xml")
-sdf = pb.SDF_PlantBox(np.inf, np.inf, box_max[2] - box_min[2])  # |\label{l72c:domain}|
-plant.setGeometry(sdf)  # |\label{l72c:soil_plant_end}|
+#sdf = pb.SDF_PlantBox(np.inf, np.inf, box_max[2] - box_min[2])  # |\label{l72c:domain}|
+#plant.setGeometry(sdf)  # |\label{l72c:soil_plant_end}|
 
 # Root hydraulic properties
 params = PlantHydraulicParameters()  # |\label{l72c:hydraulic}|
