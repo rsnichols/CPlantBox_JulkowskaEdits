@@ -39,7 +39,6 @@ dt = 360.0 / (24 * 3600)  # days |\label{l72c:param_end}|
 
 # Initialize macroscopic soil model
 s = RichardsWrapper(RichardsSP())  # |\label{l72c:soil}|
-plant.setGeometry(pb.SDF_PlantBox(70, 1.0, 50))  # width, thickness, depth, cm -- MAKES 2D IN A RHIZOTRON
 s.initialize()
 s.createGrid(box_min, box_max, cell_number, periodic=True)  # cm
 s.setHomogeneousIC(h_s_initial, True)  # cm total potential
@@ -72,6 +71,7 @@ def picker(x, y, z):
 
 
 plant.setSoilGrid(picker)
+plant.setGeometry(pb.SDF_PlantBox(70, 1.0, 50))  # width, thickness, depth, cm -- MAKES 2D IN A RHIZOTRON
 plant.initialize(True)
 plant.simulate(plant_age, True)
 hm.test()  # |\label{l72c:test}|
