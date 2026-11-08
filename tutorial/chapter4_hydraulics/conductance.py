@@ -37,10 +37,10 @@ os.makedirs(results_dir, exist_ok=True)
 
 # Conductivities [kr: 1/day], [kx: cm3/day] — from example6b_xylemflux.py / M3.2 benchmark
 
-KR_MAIN = {"p": 2.36e-05, "m": 2.42e-05, "t": 2.4e-04}  # MP, MM, MT
-KR_LAT = {"p": 1.5e-04, "m": 1.52e-04, "t": 2.37e-04}  # LP, LM, LT
-KX_MAIN = {"p": 1.85e-06, "m": 2.81e-07, "t": 3.18e-07}  # MP, MM, MT
-KX_LAT = {"p": 3.34e-07, "m": 3.73e-07, "t": 7.66e-07}  # LP, LM, LT
+KR_MAIN = {"p": 4.85e-05, "m": 3.03e-05, "t": 0.00013}  # MP, MM, MT
+KR_LAT = {"p": 8.09e-05, "m": 8.51e-05, "t": 0.000152}  # LP, LM, LT
+KX_MAIN = {"p": 0.021984, "m": 0.01638, "t": 0.014606}  # MP, MM, MT
+KX_LAT = {"p": 0.011303, "m": 0.015862, "t": 0.011886}  # LP, LM, LT
 
 #OLD: KR_MAIN = {"p": 8.83e-05, "m": 8.76e-05, "t": 9.69e-05}  # MP, MM, MT
 #KR_LAT = {"p": 8.67e-05, "m": 8.51e-05, "t": 8.65e-05}  # LP, LM, LT
