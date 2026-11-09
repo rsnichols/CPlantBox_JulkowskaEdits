@@ -24,7 +24,7 @@ sim_time = 14  # simulate from day 0 to sim_time - 1
 dt = 1
 
 architectures = [
-    "christmas_tree",
+    #"christmas_tree",
     "droopy_telephone_pole",
     "broomstick_2",
     "telephone_pole",
